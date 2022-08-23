@@ -1,8 +1,9 @@
 <ion-app>
   <ion-content>
-    <hello name="{{ name }}"></hello>
-    <p>Start editing to see some magic happen :)</p>
-
-    <ion-button>GREAT IONIC BUTTON</ion-button>
+  <app-list>
+    <h4 align="center">Filmes Star Wars </h4>>
+    <ion-item button detail lines="inset" *ngFor="let film of (films | async)?. results" > {{ film.title}}
+    </ion-item>
+  </app-list>
   </ion-content>
 </ion-app>
