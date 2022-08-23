@@ -1,4 +1,9 @@
--import { Component, VERSION } from '@angular/core';
+
+import { Component, VERSION, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { retry, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'my-app',
@@ -6,9 +11,19 @@
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  name = 'Ionic 6.2 Angular ' + VERSION.major;
+  films: Observable<any>;
 
-  constructor() {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    public toastController: ToastController
+  ) {}
+
+  ngOnInit() {
+    this.films = this.http.get('https://swapi.dev/api/films');
+  }
 
   ionViewDidEnter() {}
 }
+
+
